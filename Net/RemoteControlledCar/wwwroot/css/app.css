@@ -1,0 +1,67 @@
+﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+
+#content {
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+    padding: 0px 10px !important;
+    margin-top: 60px !important;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #D3D3D3;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 40px;
+    line-height: 40px; /* Vertically center the text there */
+    background-color: #E0E0E0;
+}
+
+.nav-item .nav-link {
+    color: black !important;
+}
+
+.nav-link.active {
+    background-color: gainsboro;
+}
+
+.nav-link:hover {        
+    background-color: whitesmoke;
+}

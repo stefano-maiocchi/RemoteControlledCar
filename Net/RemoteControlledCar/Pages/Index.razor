@@ -1,0 +1,90 @@
+﻿@page "/"
+
+@using RemoteControlledCar.Components
+@using System.ComponentModel
+@using Blazm.Bluetooth;
+@inject IBluetoothNavigator navigator
+@inject RemoteControlledCar.Devices.clsCar car
+
+<div class="container-fluid">
+
+    <div class="flex-row">
+
+        <div class="col-sm-6 offset-sm-3 col-md-4 offset-md-4 col-lg-4 offset-lg-4 d-flex justify-content-center">
+            <span class="rounded-2 bg-primary text-white text-center p-2">BT Remote Controlled Car</span>
+        </div>
+
+    </div>
+
+     <div class="flex-row">
+
+        <div class="col-sm-6 offset-sm-3 col-md-4 offset-md-4 col-lg-4 offset-lg-4 d-flex justify-content-center">
+            <VirtualJoystick @ref="vjoy" ></VirtualJoystick>
+        </div>
+
+     </div>
+    
+    <div class="flex-row">
+
+        <div class="col-sm-6 offset-sm-3 col-md-4 offset-md-4 col-lg-4 offset-lg-4 d-flex justify-content-center">
+            <button class="btn btn-success" id="btn" @onclick="OnActivated">Connect</button>
+        </div>
+
+    </div>
+   
+</div>
+
+
+
+
+
+@code {
+    VirtualJoystick vjoy;
+    double m_angle = 0;
+    int m_direction = 0;
+
+    string message = "";
+    int m_lastFrame = 0;
+
+    enum towards
+    {
+        STOP = 0,
+        RIGHT_FORWARD = 1,
+        STRAIGHT_FORWARD = 2,
+        LEFT_FORWARD = 3,
+        LEFT_BACKWARD = 4,
+        STRAIGHT_BACKWARD = 5,
+        RIGHT_BACKWARD = 6
+    };
+    
+    void OnActivated()
+    {
+        car.connect();
+
+        vjoy.JoystickPositionChanged += async (object sender, VirtualJoystick.JoyPosition pos) => {           
+            double angle = getAngle(pos.X,pos.Y);
+            bool hasBeenStopped = pos.X == 0 && pos.Y == 0;
+            m_send(hasBeenStopped, angle);            
+        };
+
+    }
+
+    void m_send(bool hasBeenStopped, double angle)
+    {
+        int frame = (int)(angle / 60) + 1; 
+        frame = hasBeenStopped ? 0 : frame;
+
+        if (frame == m_lastFrame) return;
+        m_lastFrame = frame;
+        
+        car.send($"{frame}");
+    }
+
+    double getAngle(int x, int y)
+    {
+        double a = Math.Atan2(y ,x) * 180 / Math.PI;
+        return a + 360 * (a < 0 ? 1 : 0);
+    }  
+
+}
+

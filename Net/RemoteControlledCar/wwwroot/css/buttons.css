@@ -1,0 +1,40 @@
+﻿.btn-tl {
+    border-radius: 50px 0px 0px 0px;
+    background-color: #43a047;
+    width: 100%;
+    height: 150px;
+    /*margin: 5px 0px 0px 5px;*/
+}
+
+.btn-tr {
+    border-radius: 0px 50px 0px 0px;
+    background-color: #ef6c00;
+    width: 100%;
+    height: 150px;
+    /*margin: 5px 0px 5px 0px;*/
+}
+
+.btn-br {
+    border-radius: 0px 0px 50px 0px;
+    background-color: #fdd835;
+    width: 100%;
+    height: 150px;
+    /*margin: 0px 0px 5px 0px;*/
+}
+
+.btn-bl {
+    border-radius: 0px 0px 0px 50px;
+    background-color: #0277bd;
+    width: 100%;
+    height: 150px;
+    /*margin: 0px 0px 5px 5px;*/
+}
+
+/*.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+*/
